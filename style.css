@@ -9,6 +9,7 @@ body {
   background-image: linear-gradient(180deg, rgba(13, 13, 13, 0.19) 0%, rgba(14, 14, 14, 0.8) 100%), url("./img/pic.jpg");
   top: 0;
   left: 0;
+  padding-bottom: 25px;
 }
 
 .event-header__form {
@@ -59,6 +60,7 @@ body {
   height: 100%;
   top: 0;
   left: 0;
+  display: flex;
 }
 
 .event__list {
@@ -68,16 +70,10 @@ body {
   justify-content: center;
   gap: 70px;
   padding: 0;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  margin: auto;
 }
 
 .event__item {
-  width: 196px;
-  top: 387px;
-  left: 173px;
   cursor: pointer;
 }
 
@@ -168,13 +164,24 @@ body {
 }
 
 @media screen and (min-width: 320px) {
-  .event__list {
+  .event-section {
     width: 320px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+
+  .event__list {
+    width: 280px;
+    gap: 0;
+  }
+
+  .event__item {
+    width: 138px;
+    gap: 14px;
   }
 
   .event-header__title {
     font-family: 'Montserrat';
-    font-size: 18px;
     font-weight: 900;
     line-height: 21.94px;
     text-align: center;
@@ -215,8 +222,6 @@ body {
   }
 
   .event__titles {
-    width: 128px;
-    height: 31px;
     font-family: 'Montserrat';
     font-size: 14px;
     font-weight: 700;
@@ -225,8 +230,6 @@ body {
   }
 
   .event__data {
-    width: 85px;
-    height: 14px;
     font-family: 'Montserrat';
     font-size: 14px;
     font-weight: 400;
@@ -235,8 +238,6 @@ body {
   }
 
   .event__place {
-    width: 109px;
-    height: 12px;
     font-family: 'Montserrat';
     font-size: 12px;
     font-weight: 600;
