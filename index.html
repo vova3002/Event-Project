@@ -15,10 +15,10 @@
   </head>
   <body>
     <header class="event__header">
+      <img class="event-header__img" alt="logo" src="./img/logo.png" />
+      <h1 class="event-header__title">FIND BEST EVENTS AROUND THE WORLD</h1>
       <section class="event-header__section">
-        <img class="event-header__img" src="./img/logo.png" />
-        <h1 class="event-header__title">FIND BEST EVENTS AROUND THE WORLD</h1>
-        <form class="event-header__form" action="">
+        <form class="event-header__form">
           <input
             class="event-header__search"
             type="text"
@@ -41,24 +41,45 @@
       <ul class="event__list"></ul>
     </section>
     <div class="event__modal hidden">
-      <form class="event-modal__form" action="">
+      <form class="event-modal__form">
         <button class="event-modal__button">
           <svg class="event-modal__svg">
             <use href="./img/symbol-defs.svg#icon-close"></use>
           </svg>
+          <div class="event-modal__box">
+          </div>
         </button>
       </form>
     </div>
     <div class="event-pagination__box">
-      <form action="">
-        <button type="submit" class="event-pagination__event">+1</button>
-        <button type="submit" class="event-pagination__button2">2</button>
-        <button type="submit" class="event-pagination__button3">3</button>
-        <button type="submit" class="event-pagination__button4">4</button>
-        <button type="submit" class="event-pagination__button5">5</button>
-        <input class="event-pagination__input" type="text" />
-        <button type="submit" class="event-pagination__button20">20</button>
+      <form class="event-pagination__form">
+        <button class="event-pagination__event event-pagination__button">
+          1
+        </button>
+        <button class="event-pagination__button2 event-pagination__button">
+          2
+        </button>
+        <button class="event-pagination__button3 event-pagination__button">
+          3
+        </button>
+        <button class="event-pagination__button4 event-pagination__button">
+          4
+        </button>
+        <button class="event-pagination__button5 event-pagination__button">
+          5
+        </button>
+        <input
+          class="event-pagination__input event-pagination__button"
+          placeholder="..."
+          type="text"
+        />
+        <button class="event-pagination__button20 event-pagination__button">
+          20
+        </button>
       </form>
+      <p class="goiteens">
+        © 2021 | All Rights Reserved | Developed with ♥ by GoIT Students
+      </p>
     </div>
     <script type="module" src="./index.js"></script>
   </body>
