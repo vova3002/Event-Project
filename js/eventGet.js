@@ -3,53 +3,77 @@ const form = document.querySelector(".event-header__form")
 const eventList = document.querySelector(".event__list")
 const button1 = document.querySelector(".event-pagination__event")
 const button2 = document.querySelector(".event-pagination__button2")
-const modal = document.querySelector(".hidden")
+const modal = document.querySelector(".event__modal")
 const button = document.querySelector(".event-modal__button")
 const modalBox = document.querySelector(".event-modal__box")
-button.addEventListener("click", (event) => {
-  event.preventDefault()
-  modal.classList.add("hidden")
-})
+
+// 
+// //
+// //
+// //
+// 
+
 eventList.addEventListener("click", (event) => {
   event.preventDefault()
-  if (event.target.nodeName === "LI") {
+  if (event.target.nodeName === "IMG") {
     getFetch().then((data) => {
       const eventGet = data._embedded.events.map((mapEvent) => {
-        console.log(mapEvent)
-        const modalHTML = `                      <img src="./img/symbol-defs.svg" alt="event">
-        <img src=${mapEvent} alt="ok">
-        <h3>INFO</h3>
-        <p>${mapEvent[listIndex]}</p>
-        <h3>WHEN</h3>
-        <p></p>
-        <h3>WHERE</h3>
-        <p></p>
-        <h3>WHO</h3>
-        <p></p>
-        <h3>PRICES</h3>
-        <svg>
-          <use href="./img/"></use>
-        </svg>
-        <p></p>
-        <button></button>
-        <svg>
-          <use href="./img/"></use>
-        </svg>
-        <p></p>
-        <button></button>`
+        console.log(mapEvent.images[0])
+        const modalHTML = `                      <img class="event-modal__pfp" src=${mapEvent.images[0].url} alt="event">
+        <img class="event-modal__picture" src=${mapEvent.images[0].url}>
+        <ul class="event-modal__listInfo">
+        <li>
+        <h3 class="event-modal__title">INFO</h3>
+        <p class="event-modal__text">${mapEvent.info}</p>
+        </li>
+        <li>
+        <h3 class="event-modal__title">WHEN</h3>
+        <p class="event-modal__text">${mapEvent.dates.start.localDate}</p>
+        </li>
+        <li>
+        <p class="event-modal__text">${mapEvent.dates.start.localTime}</p>
+        <h3 class="event-modal__title">WHERE</h3>
+        </li>
+        <li>
+        <p class="event-modal__text">${mapEvent.dates.timezone}</p>
+        <h3 class="event-modal__title">WHO</h3>
+        </li>
+        <li>
+        <p class="event-modal__text">${mapEvent.name}</p>
+        <h3 class="event-modal__titleprices">PRICES</h3>
+        </li>
+        </ul>
+        <ul class="event-modal__listPRICES">
+        <li class="event-modal__itemPRICES">
+        <svg class="event-modal__svgPRICES">
+        <use href="./img/symbol-defs.svg/#icon-ticket/"></use>
+      </svg>
+      <p>${mapEvent.priceRanges[0].type} ${mapEvent.priceRanges[0].min} - ${mapEvent.priceRanges[0].max} ${mapEvent.priceRanges[0].currency} </p>
+      <button type="button" class="event-modal__PRICES">BUY TICKETS</button>
+        </li>
+        <li class="event-modal__itemPRICES">
+        <svg class="event-modal__svgPRICES">
+        <use href="./img/symbol-defs.svg/#icon-ticket"></use>
+      </svg>
+      <p class="event-modal__textPRICES"> VIP${mapEvent.priceRanges[0].min} - ${mapEvent.priceRanges[0].max} ${mapEvent.priceRanges[0].currency}</p>
+      <button class="event-modal__PRICES">BUY TICKETS</button>
+        </li>
+        </ul>`
+        return modalHTML
       })
+      modalBox.innerHTML = eventGet.join('')
     })
-    const listIndex = Array.from(list.children).indexOf(event.target)
-    console.log(modal.classList.toggle("hidden"))
-    listIndex.addEventListener("click", (event) => {
+    const listIndex = Array.from(eventList.children).indexOf(event.target)
+    eventList.addEventListener("click", (event) => {
       event.preventDefault()
-      modal.classList.remove(".hidden")
-    })
-    button.addEventListener("click", (event) => {
-      event.preventDefault()
-      modal.classList.add("hidden")
+      modal.classList.remove("hidden")
     })
   }
+})
+
+button.addEventListener("click", (event) => {
+  modal.classList.add("hidden")
+  console.log("close")
 })
 
 button1.addEventListener("click", (event) => {
@@ -93,7 +117,7 @@ const getFetch = async () => {
 }
 getFetch().then((data) => {
   const eventGet = data._embedded.events.map((mapEvent) => {
-    console.log(mapEvent)
+    // console.log(mapEvent)
     const htmlEvent = `        <li name="eventLI" class="event__item">
     <img class="event__img" src="${mapEvent.images[0].url}">
     <h3 name="eventH3" class="event__titles">${mapEvent.name}</h3>
